@@ -38,6 +38,8 @@ this.setState({
             })).data;
             console.log('hiu');
             console.log(doctorData);
+            localStorage.removeItem('doctors');
+            localStorage.setItem('doctors',JSON.stringify(doctorData));
             this.setState({
                 datas:doctorData,
             })

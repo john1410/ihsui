@@ -9,6 +9,7 @@ import {combineReducers, createStore} from "redux";
 import {Route} from "react-router";
 import {BrowserRouter} from "react-router-dom";
 import SearchDoctorPages from "./PatientPages/serachDoctor/searchDoctorPages";
+import DoctorPage from "./doctorPage/doctorPage";
 
 
 const store = createStore(combineReducers(Reducer));
@@ -18,6 +19,7 @@ ReactDOM.render(
         <BrowserRouter>
             <Route exact path='/' component={App}/>
             <Route exact path='/searchDoctor' component={SearchDoctorPages}/>
+            <Route exact path='/doctorPage/:id' component={DoctorPage}/>
         </BrowserRouter>
         {/*<App/>*/}
       </Provider>,

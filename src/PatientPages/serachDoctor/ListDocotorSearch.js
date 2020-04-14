@@ -26,7 +26,7 @@ class LsitCardDoctor extends React.Component{
             console.log(this.props);
             this.props.datas.forEach((itm)=>{
                             console.log(itm);
-                    newPost.push(<CardDoctor title={itm.title} name={itm.user}/>)
+                    newPost.push(<CardDoctor medicalCouncilId={itm.medicalCouncilId} name={itm.userfullname} key={itm.userId} id={itm.userId}/>)
                         });
             this.setState({
                 items:newPost

@@ -1,15 +1,22 @@
 import React from "react";
 import doctor from "../imagesTest/docotr.png";
+import { withRouter } from "react-router-dom";
+
 const CardDoctor = (props)=>{
     // console.log('rr',props)
-    const {title,text,name}= props;
+    const {name,id,medicalCouncilId}= props;
+    function click(){
+        console.log(props);
+        props.history.push(`/doctorPage/${id}`);
+
+    }
 return(
-    <div className='col-md-4'style={{margin:'15px 0'}}>
+    <div className='col-md-4'style={{margin:'15px 0'}} onClick={click}>
         <div className="card" style={{width:"18rem"}}>
             <img className="card-img-top" src={doctor} alt={name}/>
             <div className="card-body">
-                <h5 className="card-title">{title}</h5>
-                <p className="card-text">{text}</p>
+                <h5 className="card-title">تخصص</h5>
+                <p className="card-text">{medicalCouncilId}</p>
             </div>
             <ul className="list-group list-group-flush">
                 <li className="list-group-item">{name}</li>
@@ -25,4 +32,4 @@ return(
 
 )
 }
-export default CardDoctor;
+export default withRouter(CardDoctor);
