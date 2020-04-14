@@ -1,0 +1,73 @@
+/*body{*/
+/*    direction: rtl;*/
+/*}*/
+/*style for modal*/
+.modalShow{
+    /*position: absolute;*/
+    /*margin-left: 0px !important;*/
+    animation: showModal .5s ;
+    }
+.modalHide{
+    /*margin: 15px;*/
+    opacity: 0;
+    transition: opacity .5s;
+    /*animation: hideModal 1s forwards ;*/
+}
+@keyframes showModal {
+    0%{
+     opacity: 0;
+    }
+100%{
+    opacity: 1;
+    }
+}
+/*doctor modal sign in style*/
+.signin,.signup{
+    min-height: 300px;
+    /*min-width: 300px;*/
+    border: 1px solid black;
+    border-radius: 20px;
+    /*opacity: 0;*/
+}
+.input-type-modal{
+    margin: 10px;
+}
+
+/*extra btn style*/
+.btn{
+    margin: 10px;
+}
+.input-field{
+    text-align: center;
+}
+.fa-user-md,.fa-hospital-user,.fa-file-invoice{
+    font-size: 100px;
+}
+/*login field*/
+.login-field img{
+    height: 400px;
+    /*width: 400px;*/
+}
+.modalShow{
+    margin: 20px auto;
+}
+.container-loginField{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 40px 20px;
+}
+.container-loginField img{
+    animation: upDown 1s infinite ;
+}
+@keyframes upDown {
+    0%{
+        transform: translateY(-5px);
+    }
+    50%{
+        transform: translateY(5px);
+    }
+    100%{
+        transform: translateY(-5px);
+    }
+}
