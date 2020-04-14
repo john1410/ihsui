@@ -21,7 +21,8 @@ render() {
     console.log(showDoctor);
     return(
           <div className='container container-fluid'>
-              <img src={Docimg} alt={showDoctor.userfullname} style={{height:'200px'}}/>
+              {/*<img src={Docimg} alt={showDoctor.userfullname} style={{height:'200px'}}/>*/}
+              <img src={showDoctor.avatar} alt={showDoctor.userfullname} style={{height:'200px'}}/>
             <h1>{showDoctor.userfullname}</h1>
               <h2>{showDoctor.medicalCouncilId}</h2>
           </div>

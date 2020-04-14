@@ -10,10 +10,12 @@ const registertionData = await axios.post(Helper.registerUrl,{
     });
 return registertionData;
 };
-export const login = async ({username,password})=>{
+export const login = async ({username,password,email,full_name})=>{
     const siginData = await axios.post(Helper.authorizationUrl,{
         username:username,
         password:password,
+        email:email,
+        full_name:full_name,
     });
     return siginData;
 }

@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 
 const CardDoctor = (props)=>{
     // console.log('rr',props)
-    const {name,id,medicalCouncilId}= props;
+    const {name,id,medicalCouncilId,avatar}= props;
     function click(){
         console.log(props);
         props.history.push(`/doctorPage/${id}`);
@@ -13,7 +13,8 @@ const CardDoctor = (props)=>{
 return(
     <div className='col-md-4'style={{margin:'15px 0'}} onClick={click}>
         <div className="card" style={{width:"18rem"}}>
-            <img className="card-img-top" src={doctor} alt={name}/>
+            {/*<img className="card-img-top" src={avatar} alt={name}/>*/}
+            <img className="card-img-top" src={avatar} alt={name}/>
             <div className="card-body">
                 <h5 className="card-title">تخصص</h5>
                 <p className="card-text">{medicalCouncilId}</p>
