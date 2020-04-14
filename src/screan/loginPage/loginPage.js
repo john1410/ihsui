@@ -52,62 +52,59 @@ class LoginPage extends React.Component {
             this.setState({
                 showPatientModal:!this.state.showPatientModal,
                 showDoctorModal:false,
-                showCreateAccount:false,
                 username:'',
                 password:'',
             });
             this.onchangedEmail = this.onchangedEmail.bind(this);
             this.onChangePassword = this.onChangePassword.bind(this);
         }
-        // const createAccount=()=>{
-        //     this.setState({
-        //         showCreateAccount:!this.state.showCreateAccount,
-        //         showDoctorModal:false,
-        //         showPatientModal:false,
-        //
-        //     });
-        // }
+
         //function for create the account
         const createAccount = async () =>{
             const check =await signUp({username:this.state.username,password:this.state.password});
             console.log('hiii');
             console.log(check);
+            if(check.data!=null){
+                console.log('hii')
 
+                console.log(check.data);
+                createUserInfo(check.data);
             this.props.setUser(check.data);
             const dataLogin = await login({username:this.state.username,password:this.state.password});
-            console.log(dataLogin);
-            await this.props.setToken(dataLogin.data.token);
-            if(dataLogin.data.token){
-                this.props.history.push("/searchDoctor");
-                console.log('hii')
+
+                await this.props.setToken(dataLogin.data.token);
+                if(dataLogin.data.token){
+                    createTokenLocalStorage(dataLogin.data.token);
+                    this.props.history.push("/searchDoctor");
+                }
             }
+
         }
         //end for this funtion
 
-        const createAccountBtn=()=>{
-            console.log('hi')
-            return(
-                <Redirect to={'/searchDoctor'} />
-            )
-        }
-
         //funtion for sign in
         const signinAccount =async ()=>{
-            localStorage.removeItem('token');
 
             const dataLogin = await login({username:this.state.username,password:this.state.password});
             console.log(dataLogin);
             await this.props.setToken(dataLogin.data.token);
             if(dataLogin.data.token){
-                const tokenStorage = JSON.stringify(dataLogin.data.token);
-                localStorage.setItem('token',tokenStorage);
-                //get user info
-                // const checkUser =await signUp({username:this.state.username,password:this.state.password});
-                // await this.props.setUser(checkUser.data);
+            createTokenLocalStorage(dataLogin.data.token);
+
                 this.props.history.push("/searchDoctor");
                 console.log('hii')
             }
         };
+
+        const createTokenLocalStorage =(token)=>{
+            localStorage.removeItem('token');
+            localStorage.setItem('token', JSON.stringify(token));
+        }
+        const createUserInfo =(user)=>{
+            localStorage.removeItem('user');
+            localStorage.setItem('user', JSON.stringify(user));
+
+        }
 
 
 
@@ -156,25 +153,6 @@ class LoginPage extends React.Component {
                 </div>
             </div>;
 
-   const modalCreateAccount=
-            <div className={this.state.showCreateAccount?'modalShow signup col-md-4':'modalHide signup col-md-4'} >
-                <div className="form-group input-field">
-                    <label htmlFor="exampleInputEmail1">Email address</label>
-                    <input type="email" className="form-control"  placeholder="Email"/>
-                </div>
-                <div className="form-group input-field">
-                    <label htmlFor="exampleInputPassword1">Password</label>
-                    <input type="password" className="form-control"  placeholder="Password"/>
-                </div>
-                <div className="form-group input-field">
-                    <i className="fas fa-file-invoice"></i>
-                   <Link to='/searchDoctor'> <button onClick={createAccountBtn}>ساختن
-                    </button>
-                   </Link>
-
-                </div>
-
-            </div>;
 
         if(this.state.showDoctorModal){
             showModal = modaldoctor;
@@ -182,9 +160,7 @@ class LoginPage extends React.Component {
         else if(this.state.showPatientModal){
             showModal = modalPatient;
         }
-        else if(this.state.showCreateAccount){
-            showModal = modalCreateAccount;
-        }
+
         else {
                 showModal=null;
         }

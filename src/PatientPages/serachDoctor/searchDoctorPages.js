@@ -27,7 +27,8 @@ this.setState({
         const getDoctorData=async ()=>{
             const tokenApi = token ? token : JSON.parse(localStorage.getItem('token'));
             console.log('hiii');
-            console.log(localStorage.getItem('token'));
+            console.log(JSON.parse(localStorage.getItem('token')));
+            console.log(JSON.parse(localStorage.getItem('user')));
             console.log('hi');
             console.log(token);
             console.log(user);
@@ -46,11 +47,12 @@ this.setState({
             //     datas:datas,
             // })
         }
-
+const name =(JSON.parse(localStorage.getItem('user')));
+        // user?user.username:JSON.parse(localStorage.getItem('user'));
         return(
             <div className='row'>
                 <div className='col-md-3'>
-                    <SideProfile name='reza'/>
+                    <SideProfile name={name.username}/>
                 </div>
                 <div className='col-md-8' style={{margin:'0 auto'}}>
 
