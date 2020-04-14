@@ -5,7 +5,7 @@ class LsitCardDoctor extends React.Component{
     constructor(props) {
         super(props);
         this.state={
-            items:[<CardDoctor title='reza' name='rexza' text='hi'/>]
+            items:[]
         }
     }
 
@@ -26,7 +26,7 @@ class LsitCardDoctor extends React.Component{
             console.log(this.props);
             this.props.datas.forEach((itm)=>{
                             console.log(itm);
-                    newPost.push(<CardDoctor title={itm.title}/>)
+                    newPost.push(<CardDoctor title={itm.title} name={itm.user}/>)
                         });
             this.setState({
                 items:newPost

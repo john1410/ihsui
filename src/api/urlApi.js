@@ -25,6 +25,7 @@ export const Helper = {
     patientRegister : BASE_URL + 'patients/',
     authorizationUrl : BASE_URL + 'token/',
     registerUrl: BASE_URL + 'users/',
+    searchDoctor:BASE_URL + 'doctors/?name=',
     newfeedDataUrl: BASE_URL + 'postnewfeed?name=',
     postDataUrl: BASE_URL + 'post',
     likePostUrl: BASE_URL + 'likepost',

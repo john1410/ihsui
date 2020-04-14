@@ -70,12 +70,14 @@ class LoginPage extends React.Component {
         //function for create the account
         const createAccount = async () =>{
             const check =await signUp({username:this.state.username,password:this.state.password});
+            console.log('hiii');
+            console.log(check);
+
             this.props.setUser(check.data);
             const dataLogin = await login({username:this.state.username,password:this.state.password});
             console.log(dataLogin);
             await this.props.setToken(dataLogin.data.token);
             if(dataLogin.data.token){
-
                 this.props.history.push("/searchDoctor");
                 console.log('hii')
             }
@@ -91,10 +93,14 @@ class LoginPage extends React.Component {
 
         //funtion for sign in
         const signinAccount =async ()=>{
+            localStorage.removeItem('token');
+
             const dataLogin = await login({username:this.state.username,password:this.state.password});
             console.log(dataLogin);
             await this.props.setToken(dataLogin.data.token);
             if(dataLogin.data.token){
+                const tokenStorage = JSON.stringify(dataLogin.data.token);
+                localStorage.setItem('token',tokenStorage);
                 //get user info
                 // const checkUser =await signUp({username:this.state.username,password:this.state.password});
                 // await this.props.setUser(checkUser.data);
@@ -105,13 +111,13 @@ class LoginPage extends React.Component {
 
 
 
-        let showModal=<div className='modalHide'></div>;
+        let showModal=null;
         //doctor modal
         const modaldoctor=
             <div className={this.state.showDoctorModal?'modalShow signin col-md-4':'modalHide signin col-md-4'}>
                 <div className="form-group input-field">
-                    <label htmlFor="exampleInputEmail1">Email address</label>
-                    <input type="email" className="form-control"  placeholder="Email"/>
+                    <label htmlFor="exampleInputEmail1">User Name</label>
+                    <input type="email" className="form-control"  placeholder="User Name"/>
                 </div>
                 <div className="form-group input-field">
                 <label htmlFor="exampleInputPassword1">Password</label>
@@ -132,8 +138,8 @@ class LoginPage extends React.Component {
         const modalPatient=
             <div className={this.state.showPatientModal?'modalShow signin col-md-4':'modalHide signin col-md-4'} >
                 <div className="form-group input-field">
-                    <label htmlFor="exampleInputEmail1">Email address</label>
-                    <input type="email" className="form-control" placeholder="Email" onChange={this.onchangedEmail} value={this.state.username}/>
+                    <label htmlFor="exampleInputEmail1">User Name</label>
+                    <input type="email" className="form-control" placeholder="User Name" onChange={this.onchangedEmail} value={this.state.username}/>
                 </div>
                 <div className="form-group input-field">
                     <label htmlFor="exampleInputPassword1">Password</label>
@@ -148,8 +154,6 @@ class LoginPage extends React.Component {
                         </div>
                     </div>
                 </div>
-
-
             </div>;
 
    const modalCreateAccount=
